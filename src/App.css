@@ -1,0 +1,217 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #1e1e1e;
+  color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.chess-app {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title {
+  margin-bottom: 20px;
+  color: #dfc8a3;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Status Notifications banners */
+.alert-banner {
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.check-warning {
+  background-color: #d97706;
+  color: white;
+}
+.game-over {
+  background-color: #dc2626;
+  color: white;
+}
+
+/* Main Board Layout */
+.game-layout {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  justify-content: center;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 520px;
+}
+
+.player-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  font-size: 16px;
+  font-weight: 500;
+}
+.player-bar.active-turn {
+  border-left: 5px solid #dfc8a3;
+  background-color: #333333;
+}
+.timer-box {
+  font-family: monospace;
+  font-size: 18px;
+  background-color: #1a1a1a;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Grid Matrix */
+.chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 520px;
+  height: 520px;
+  border: 4px solid #2a2a2a;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.square {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Theme color specifications matching traditional canvas overlays */
+.square.light {
+  background-color: #f0d9b5;
+}
+.square.dark {
+  background-color: #b58863;
+}
+.square.selected {
+  background-color: #7b9c60 !important;
+}
+
+/* Actionable Highlight Dots */
+.highlight-dot {
+  width: 18px;
+  height: 18px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Piece Glyphs */
+.chess-piece {
+  font-size: 46px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+}
+.white-p {
+  color: #ffffff;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8));
+}
+.black-p {
+  color: #000000;
+  filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.2));
+}
+
+/* Move history panel sidebar */
+.sidebar-panel {
+  width: 280px;
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.sidebar-panel h3 {
+  color: #dfc8a3;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 8px;
+}
+
+.move-history-box {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.empty-msg {
+  color: #777;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.notation-list {
+  padding-left: 25px;
+  color: #aaa;
+}
+.notation-row {
+  margin-bottom: 6px;
+  font-family: monospace;
+  font-size: 15px;
+}
+.move-move {
+  display: inline-block;
+  width: 80px;
+  color: #eee;
+  padding-left: 10px;
+}
+
+.reset-btn {
+  background-color: #b58863;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.reset-btn:hover {
+  background-color: #a47651;
+}
